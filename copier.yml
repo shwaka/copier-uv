@@ -1,0 +1,12 @@
+_subdirectory: template
+
+project_name:
+  type: str
+  help: What is your project name?
+
+# Computed values
+# https://copier.readthedocs.io/en/stable/faq/#how-to-create-computed-values
+project_name_snake_case:
+  type: str
+  default: "{{ project_name | replace('-', '_') }}"
+  when: false # This makes sure it isn't asked nor stored
