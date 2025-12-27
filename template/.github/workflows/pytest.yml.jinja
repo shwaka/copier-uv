@@ -3,7 +3,7 @@ name: Test with pytest
 on:
   push:
     branches: [ main ]
-    # paths: [ "lights-out-solver/**", ".github/workflows/pytest.yml" ]
+    paths: [ "{{project_dir}}/**", ".github/workflows/pytest.yml" ]
   workflow_dispatch:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
       matrix:
         python-version: ["3.11", "3.12", "3.13"]
     env:
-      project_dir: .
+      project_dir: {{ project_dir }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
