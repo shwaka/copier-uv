@@ -4,9 +4,21 @@ project_name:
   type: str
   help: What is your project name?
 
+make_subdir:
+  type: bool
+  default: true
+  help: Do you want to make a subdirectory and extract the template into it?
+
 # Computed values
 # https://copier.readthedocs.io/en/stable/faq/#how-to-create-computed-values
 project_name_snake_case:
   type: str
   default: "{{ project_name | replace('-', '_') }}"
   when: false # This makes sure it isn't asked nor stored
+
+project_dir:
+  type: str
+  # 複数行にすると空白が入ってしまうのでうまくいかない
+  default: >-
+    {% if make_subdir %}{{ project_name }}{% else %}.{% endif %}
+  when: false
