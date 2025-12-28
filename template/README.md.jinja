@@ -1,6 +1,11 @@
-## Usage of uv
+## Development
 - Install deps: `uv sync`
 - Run scripts: `uv run {{project_name_snake_case}} <args>`
-- Install scripts to system: `uv tool install .`
 - Run tests: `uv run pytest`
 - Typecheck: `uv run mypy src`
+
+## Installation
+- Install scripts to system: `uv tool install .`
+    + これだと，更新を反映するにはバージョン番号を更新する必要がある
+- Reinstall: `uv tool install . --reinstall`
+- Install in editable mode: `uv tool install . --editable` (`-e` でもOK)
