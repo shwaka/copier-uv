@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from tap import Tap
 import argcomplete
 
@@ -5,7 +7,7 @@ class FooParser(Tap):
     value: int = 3 # The value printed after "foo"
 
     @staticmethod
-    def _handler(args: "FooParser") -> None:
+    def _handler(args: FooParser) -> None:
         print(f"foo {args.value}")
 
     def configure(self) -> None:
