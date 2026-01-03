@@ -22,3 +22,6 @@ project_dir:
   default: >-
     {% if make_subdir %}{{ project_name }}{% else %}.{% endif %}
   when: false
+
+_exclude:
+  - "{% if not emit_copierdev %}.copierdev.yml{% else %}__never_match__{% endif %}"

@@ -21,9 +21,9 @@ fi
 # copier copy
 cd "$root_dir"
 if [ -f "$answers_file" ]; then
-    copier copy "$root_dir" "$testproj_dir" --force
+    copier copy "$root_dir" "$testproj_dir" --data emit_copierdev=true --force
 else
-    copier copy "$root_dir" "$testproj_dir"
+    copier copy "$root_dir" "$testproj_dir" --data emit_copierdev=true
 fi
 
 # git commit
