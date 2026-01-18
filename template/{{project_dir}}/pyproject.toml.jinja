@@ -35,3 +35,20 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/{{ project_name_snake_case }}"]
+
+# poethepoet tasks
+[tool.poe.tasks]
+# main
+main.script = "{{ project_name_snake_case }}.main:main"
+main.help = "Run {{ project_name_snake_case }}.main:main"
+# test
+test.cmd = "pytest tests"
+test.help = "Run pytest"
+# mypy
+_mypy_src.cmd = "mypy src"
+_mypy_test.cmd = "mypy tests"
+mypy.sequence = ["_mypy_src", "_mypy_test"]
+mypy.help = "Run mypy for src/ and tests/"
+# install
+install.shell = "uv tool install ."
+install.help = "Install this script globally"
