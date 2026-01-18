@@ -18,9 +18,10 @@ project_name_snake_case:
 
 project_dir:
   type: str
-  # 複数行にすると空白が入ってしまうのでうまくいかない
+  # 複数行にすると空白が入ってしまうのでうまくいかない．
+  # copierdev sync-testproj で名前の衝突を避けるためにsuffixを追加する．
   default: >-
-    {% if make_subdir %}{{ project_name }}{% else %}.{% endif %}
+    {% if make_subdir %}{{ project_name }}{% if emit_copierdev %}-dir{% endif %}{% else %}.{% endif %}
   when: false
 
 _exclude:
