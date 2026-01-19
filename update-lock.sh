@@ -1,20 +1,27 @@
 #!/usr/bin/env bash
 set -eu
 
-function update_uv_lock() {
-    local uv_lock_path="$1"
-    echo "Updating $uv_lock_path"
+ignore_dir=.venv
+lock_file_name=uv.lock
+lock_command=(uv lock)
+
+function update_lock_file() {
+    local lock_path="$1"
+    echo "Updating $lock_path"
     (
-        cd "$(dirname "$uv_lock_path")"
-        uv lock
+        cd "$(dirname "$lock_path")"
+        "${lock_command[@]}"
+        git add .
+        git commit -m "Update lock file"
     )
-    copierdev sync-testproj "$uv_lock_path" --apply
+    copierdev sync-testproj "$lock_path" --apply
 }
 
-export -f update_uv_lock
+export -f update_lock_file
 
 copierdev create-testproj
 testproj_dir="$(copierdev show-path testproj)"
-find "$testproj_dir" -name .venv -prune \
-     -o -name uv.lock \
-     -exec bash -c 'update_uv_lock "$1"' _ {} \;
+
+find "$testproj_dir" -name "$ignore_dir" -prune \
+     -o -name "$lock_file_name" \
+     -exec bash -c 'update_lock_file "$1"' _ {} \;
