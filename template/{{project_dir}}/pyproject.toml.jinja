@@ -50,5 +50,5 @@ _mypy_test.cmd = "mypy tests"
 mypy.sequence = ["_mypy_src", "_mypy_test"]
 mypy.help = "Run mypy for src/ and tests/"
 # install
-install.shell = "uv tool install ."
+install.shell = "uv tool install . --reinstall"
 install.help = "Install this script globally"
