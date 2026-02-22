@@ -1,10 +1,14 @@
 ## Development
 - Install deps: `uv sync`
-- Run scripts: `uv run {{project_name_snake_case}} <args>`
-- Run tests: `uv run pytest`
-- Typecheck: `uv run mypy src`
+- Run scripts: `uv run {{ project_name_snake_case }} <args>`
+- Run main: `uv run poe main`
+- Run tests: `uv run poe test`
+- Typecheck: `uv run poe mypy`
+- Install: `uv run poe install`
 
 ## Installation
+上記の `poe install` で十分だが，その詳細は以下の通り．
+
 - Install scripts to system: `uv tool install .`
     + これだと，更新を反映するにはバージョン番号を更新する必要がある
 - Reinstall: `uv tool install . --reinstall`
